@@ -1,0 +1,147 @@
+/* home.css */
+.container {
+    padding: 2rem;
+    text-align: center;
+    max-width: 600px;
+    margin: auto; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100vh; 
+}
+
+.quiz-container {
+    padding: 2rem;
+    text-align: center;
+    max-width: 600px;
+    margin: auto; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100vh; 
+}
+  
+h2 {
+    color: white;
+    font-size: 4rem;
+    font-weight: 1000;
+    filter: drop-shadow(0 0 5px #e93aec);
+}
+
+p {
+    color: white;
+    filter: drop-shadow(0 0 5px black);
+    font-size: 1.5rem;
+    padding: 1rem;
+    margin-bottom: 20px;
+}
+
+.custom-button {
+    padding: 10px 20px;
+    font-size: 1.1rem;
+    background-color: rgb(127, 64, 199); 
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease; 
+    max-width: 200px;
+    margin-left: 165px;
+    height: 40px;
+
+    border-color: 2px solid white;
+    outline: none;
+    border-radius: 8px;
+    box-shadow: 0 0 10px black;
+    font-weight: 800;
+}
+  
+.custom-button:hover {
+    background-color: #838; 
+    border-color: 2px solid white;
+    outline: none;
+    border-radius: 8px;
+}
+
+
+.quiz-button {
+    padding: 10px 20px;
+    font-size: 1.1rem;
+    background-color: white(127, 64, 199); 
+    color: black;
+    cursor: pointer;
+    transition: background-color 0.3s ease; 
+    max-width: 1000px;
+    height: 40px;
+    margin-bottom: 20px;
+
+    border-color: 2px solid white;
+    outline: none;
+    border-radius: 8px;
+    box-shadow: 0 0 10px black;
+    font-weight: 800;
+}
+  
+.quiz-button:hover {
+    background-color: #838; 
+    border-color: 2px solid white;
+    outline: none;
+    border-radius: 8px;
+}
+
+.popup-info {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 500px;
+    background-color: #000000f4;
+    border-radius: 8px;
+    padding: 10px 25px;
+    opacity: 0;
+    transition: opacity 1s ease; 
+}
+
+h3 {
+    color: white;
+    font-size: 3rem;
+    font-weight: 1000;
+    filter: drop-shadow(0 0 5px black);
+    margin-bottom: 5px;
+}
+
+.info {
+    display: inline-block;
+    font-size: 20px;
+    color: white;
+    font-weight: 500;
+    margin: 4px 0;
+    margin-bottom: 5px;
+}
+
+.btn {
+    margin-top: 10px;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+}
+
+.button {
+    width: 150px;
+    height: 35px;
+    background-color: rgb(127, 64, 199); 
+    outline: none;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+    line-height: 30px;
+}
+
+.button:hover {
+    background-color: #838; 
+    border-color: 2px solid white;
+    outline: none;
+    border-radius: 8px;
+}
