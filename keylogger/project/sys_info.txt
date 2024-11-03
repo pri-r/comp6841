@@ -1,0 +1,30 @@
+Public IP Address: 203.30.15.74
+Processor: arm
+System: Darwin Darwin Kernel Version 21.6.0: Mon Dec 19 20:45:43 PST 2022; root:xnu-8020.240.18~2/RELEASE_ARM64_T8110
+Machine: arm64
+Hostname: prishas-air.lan
+Private IP Address: 192.168.86.107
+Public IP Address: 203.30.15.74
+Processor: arm
+System: Darwin Darwin Kernel Version 21.6.0: Mon Dec 19 20:45:43 PST 2022; root:xnu-8020.240.18~2/RELEASE_ARM64_T8110
+Machine: arm64
+Hostname: prishas-air.lan
+Private IP Address: 192.168.86.107
+Public IP Address: 203.30.15.74
+Processor: arm
+System: Darwin Darwin Kernel Version 21.6.0: Mon Dec 19 20:45:43 PST 2022; root:xnu-8020.240.18~2/RELEASE_ARM64_T8110
+Machine: arm64
+Hostname: prishas-air.lan
+Private IP Address: 192.168.86.107
+Public IP Address: 203.30.15.74
+Processor: arm
+System: Darwin Darwin Kernel Version 21.6.0: Mon Dec 19 20:45:43 PST 2022; root:xnu-8020.240.18~2/RELEASE_ARM64_T8110
+Machine: arm64
+Hostname: prishas-air.lan
+Private IP Address: 192.168.86.107
+Public IP Address: 203.30.15.74
+Processor: arm
+System: Darwin Darwin Kernel Version 21.6.0: Mon Dec 19 20:45:43 PST 2022; root:xnu-8020.240.18~2/RELEASE_ARM64_T8110
+Machine: arm64
+Hostname: prishas-air.lan
+Private IP Address: 192.168.86.107
