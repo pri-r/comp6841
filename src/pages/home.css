@@ -145,3 +145,33 @@ h3 {
     outline: none;
     border-radius: 8px;
 }
+
+.bsk-container {
+    margin-top: 15px;
+  }
+
+.bsk-btn {
+    display: flex;
+    align-items: center;
+    background-color: #f3f2f1;
+    color: #333;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.bsk-btn:hover {
+    background-color: #e1e1e1;
+}
+
+.x-icon {
+    height: 1em;
+    width: 1em;
+    top: 0.125em;
+    position: relative;
+    margin-right: 8px;
+}

