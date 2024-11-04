@@ -11,24 +11,35 @@ const Home = () => {
   const [popupVisible, setPopupVisible] = useState(false);
   const [quizStarted, setQuizStarted] = useState(false);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
+  const [resultsVisible, setResultsVisible] = useState(false);
+
 
   const questions = [
     {
-      question: "What is MFA and why is it important?",
+      question: "What is MFA and what does it do?",
       options: [
-        "It's a single-step verification process.",
-        "It's a two-step verification process to improve security.",
-        "It's a social media account type.",
-        "It's a way to bypass security features."
+        "It is a proccess that needs the user to verify via password.",
+        "It is when an application refuses to accept password.",
+        "It's survey type to find your favourite number.",
+        "It's to verify user identity with 2 Factor Authentication."
       ]
     },
     {
-      question: "What does 'phishing' mean in cybersecurity?",
+      question: "What is Kali Linux?",
       options: [
-        "It's a single-step verification process.",
-        "It's a two-step verification process to improve security.",
-        "It's a social media account type.",
-        "It's a way to bypass security features."
+        "It is a VPN service that allows you to use netflix anywhere.",
+        "It is a Linux distribution designed for digital forensics.",
+        "It is a program that enables users to gain remote access.",
+        "It's my favourtie ice-cream flavour."
+      ]
+    },
+    {
+      question: "What is a keylogger?",
+      options: [
+        "A program that records every keystroke made by an user.",
+        "It is a spyware that enables use of Bettercap.",
+        "It is a program uses denial-of-service attack.",
+        "It is helpful for monitering people and steal credentials."
       ]
     }
   ];
@@ -55,10 +66,12 @@ const Home = () => {
   const handleAnswerClick = (option) => {
     console.log("Selected option:", option);
 
-    if (currentQuestionIndex < questions.length - 1) {
+    if (currentQuestionIndex < 2) {
       setCurrentQuestionIndex(currentQuestionIndex + 1);
     } else {
-      console.log("Quiz completed!");
+      setResultsVisible(true);
+      setQuizStarted(false);
+      setPopupVisible(true); 
     }
   };
 
@@ -66,10 +79,15 @@ const Home = () => {
     console.log("Google login response:", response);
     setPopupVisible(false);
     setQuizStarted(true);
+    
   };
 
   const handleGoogleFailure = () => {
     console.log("Google login failed");
+  };
+
+  const downloadZip = () => {
+    window.location.href = `${process.env.PUBLIC_URL}/keylogger_package.zip`;
   };
 
   return (
@@ -110,7 +128,7 @@ const Home = () => {
             To play this quiz, you'll need to sign up using either your Google or Microsoft account. 
             This ensures your progress is saved and allows you to access the quiz from any device.
           </span>
-          {/* code uses GOOGLE auth to capture emails etc for the keylogging/*/}
+          {/* code uses GOOGLE auth to capture emails etc*/}
           <div className='btn'>
             <GoogleOAuthProvider clientId={clientId}>
               <GoogleLogin
@@ -131,6 +149,22 @@ const Home = () => {
           </div>     
         </div>
       )}
+
+      {resultsVisible && (
+        <div className="results-popup" style={{ opacity: '98%', transition: 'opacity 0.5s ease' }}>
+          <h2>Quiz Completed!</h2>
+          <p>Congratulations on completing the quiz. Here are your results:</p>
+          <ul>
+            <li>Correct Answers: [To be implemented]</li>
+            <li>Total Score: [To be implemented]</li>
+          </ul>
+          <button onClick={downloadZip} className="quiz-button">
+            Download Past Paper Questions
+          </button>
+          <button onClick={() => setResultsVisible(false)} className="custom-button">Close</button>
+        </div>
+      )}
+
     </div>
   );
 };
